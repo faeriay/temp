@@ -1,0 +1,53 @@
+---
+title: "ES Homework"
+author: "Jacob Lo"
+date: "2015年12月14日"
+output: html_document
+---
+
+
+```{r, echo=FALSE}
+#preparation
+install.packages("dplyr")
+install.packages("nycflights13")
+library(dplyr)
+library(nycflights13)
+```
+
+```{r}
+# conditional filter to vector
+x <- c(1,2,3,4,5)
+y <- c(2,3,9,29,98)
+y[y<mean(x)]
+```
+
+```{r}
+#aggregated function and group by list
+family1 <- list(
+  name = "Espinoza",
+  numofchild = 4,
+  ages = c(5,7,9,11),
+  measles = c("Y","N","Y","Y")
+)
+family2 <- list(
+  name = "Ginsberg",
+  numofchild = 3,
+  ages = c(9,13,18),
+  measles = c("Y","N","Y")
+)
+
+sapply(c(family1[3],family2[3]),function(i){ mean(i)})
+
+```
+
+```{r}
+#add a new column in dataframe
+add_flights <- mutate(flights,speed = distance / air_time * 60)
+add_flights
+```
+
+```{r}
+daily <- group_by(flights,year,month,day)
+summarise(daily, flight=n())
+```
+
