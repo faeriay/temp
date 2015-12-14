@@ -47,6 +47,7 @@ add_flights
 ```
 
 ```{r}
+#count flight per day
 daily <- group_by(flights,year,month,day)
 summarise(daily, flight=n())
 ```
