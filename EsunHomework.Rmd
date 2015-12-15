@@ -10,8 +10,10 @@ output: html_document
 #preparation
 install.packages("dplyr")
 install.packages("nycflights13")
+install.packages("ggplot2")
 library(dplyr)
 library(nycflights13)
+library(ggplot2)
 ```
 
 ```{r}
@@ -51,4 +53,38 @@ add_flights
 daily <- group_by(flights,year,month,day)
 summarise(daily, flight=n())
 ```
+
+```{r}
+#INSTALL GGPLOT2 IS GOD DAMM LONG
+remove.packages(c("ggplot2", "data.table"))
+install.packages('Rcpp', dependencies = TRUE)
+install.packages('ggplot2', dependencies = TRUE)
+install.packages('data.table', dependencies = TRUE)
+#install.packages("ggplot2", dependencies=c("Depends", "Imports", "Suggests") )
+```
+
+```{r plot, fig.height=4,fig.height=3,message=FALSE}
+data("mtcars") 
+attach(mtcars)
+#simple scatter plot
+plot(wt~mpg,main="scatter plot",xlab = "car weight",ylab = "miles per gallon",pch=5)
+my.cars.melted <- melt(my.cars, id.vars = "Car")
+```
+
+```{r plot, fig.height=4,fig.height=3,message=FALSE}
+#Broken-line graph
+plot(wt,mpg,type="l",main="scatter plot",xlab = "car weight",ylab = "miles per gallon",pch=5)
+my.cars.melted <- melt(my.cars, id.vars = "Car")
+```
+
+```{r barplot, fig.height=4,fig.height=3,message=FALSE}
+#Bar-plot graph
+barplot(table(cyl),ylab="count")
+```
+
+```{r boxplot, fig.height=4,fig.height=3,message=FALSE}
+#Boxplot
+boxplot(mpg~cyl,main="car milage data",xlab="number of cylinders",ylab="miles per gallon")
+```
+
 
