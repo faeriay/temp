@@ -36,8 +36,25 @@
                                     .attr("cy", function (d) { return d.cy; })
                                     .attr("r", circle_attr.radius)
                                     .style("stroke", circle_attr.stroke)
-                                    .style("fill", circle_attr.ini);                
-            
+                                    .style("fill", circle_attr.ini)
+                                    .on('mouseover',hover_in)
+                                    .on('mouseout',hover_out);
+                
+            function hover_in() {
+                            d3.select(this)
+                            .transition()
+                            .duration(600)
+                            .attr('stroke-width',2)
+                            .style("fill","steelblue")
+                            ;}
+            function hover_out() {
+                            d3.select(this)
+                            .transition()
+                            .duration(600)
+                            .attr('stroke-width',1)
+                            .style("fill","white")
+                            ;}
+
                 
 		</script>
 
